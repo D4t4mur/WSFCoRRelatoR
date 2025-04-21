@@ -57,12 +57,12 @@ cdse_search_products <- function(username, password, sensor = "SENTINEL-5P",
 
 
 
-products <- cdse_search_products(
-  username = ####,
-  password = ####,
-  sensor = "SENTINEL-5P",
-  date_from = "2024-03-10",
-  date_to = "2024-03-20",
-  keyword = "NO2",
-  top_n = 3
-)
+# products <- cdse_search_products(
+#   username = "asdf",
+#   password = "asdf",
+#   sensor = "SENTINEL-5P",
+#   date_from = "2024-03-10",
+#   date_to = "2024-03-20",
+#   keyword = "NO2",
+#   top_n = 3
+# )
