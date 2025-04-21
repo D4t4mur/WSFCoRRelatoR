@@ -1,22 +1,28 @@
-# function to calculate mean value for a raster
-# based on polygon if provided
+#' function to calculate mean value for a raster
+#' based on boundary polygon
 
-rastmeancalc <- function(raster, boundary_polygon = NULL) {
+#' @param raster raster with random data
+#' @param boundary_polygon vector file with boundary units
+#' @return mean value for raster values
+#' @export
+
+
+rastmeancalc <- function(raster, boundary_polygon) {
 
   library(sf) # shapefiles and geopackages
   library(terra) # rasters
   library(dplyr) # data manipulation
   library(exactextractr) # for accurate raster extraction with polygons
 
-  data <- rast(raster)
-  if (!is.null(boundary_polygon)) {
-    boundary <- st_transform(boundary_polygon, crs(data))
-    mean <- exact_extract(data, boundary, fun = 'mean') %>% round(3)
+  data <- if (inherits(raster, "SpatRaster")) raster else rast(raster)
 
-  }
-  else {
-    mean <- global(data, fun = 'mean')
-  }
+  if (!hasValues(data)) stop("Raster contains no values.")
+  if (!inherits(boundary_polygon, "sf")) stop("Boundary has to be a sf-object.")
+
+  boundary <- st_transform(boundary_polygon, crs(data))
+  data_crop <- crop(data, vect(boundary))
+
+  mean <- exact_extract(data_crop, boundary, fun = 'mean') %>% round(3)
 
   return(mean)
 }

@@ -3,36 +3,33 @@
 
 #' @param wsf_raster raster with world settlement footprint data
 #' @param boundary_polygon vector file with optional boundary units
-#' @return total built-up area
+#' @return total built-up area as sf-object
 #' @export
 
-builtuparea <- function(wsf_raster, boundary_polygon = NULL) {
+builtuparea <- function(wsf_raster, boundary_polygon) {
 
   library(sf) # shapefiles and geopackages
   library(terra) # rasters
   library(dplyr) # data manipulation
-  library(exactextractr) # for accurate raster extraction with polygons
 
   data <- if (inherits(wsf_raster, "SpatRaster")) wsf_raster else rast(wsf_raster)
 
-  if (!hasValues(data)) stop("⚠️ Das Raster enthält keine Werte.")
+  if (!hasValues(data)) stop("Raster contains no values.")
+  if (!inherits(boundary_polygon, "sf")) stop("Boundary has to be a sf-object.")
 
-  mask <- data
-  values(mask)[values(data) != 255] <- NA
+  boundary <- st_transform(boundary_polygon, crs(data))
+  data_crop <- crop(data, vect(boundary))
 
-  if (!is.null(boundary_polygon)) {
-    boundary <- st_transform(boundary_polygon, crs(data))
-    boundary_mask <- mask(mask, boundary)
-    builtup <- as.polygons(boundary_mask, dissolve = TRUE, na.rm = TRUE)
-  }
+  mask <- data_crop
+  values(mask)[values(data_crop) != 255] <- NA
+  mask <- classify(data_crop, rcl = matrix(c(-Inf, 254, NA), ncol = 3, byrow = TRUE))
 
-  else {
-    builtup <- as.polygons(mask, dissolve = TRUE, na.rm = TRUE)
-  }
 
-  # builtup_sf <- st_as_sf(builtup)
+  boundary_mask <- mask(mask, boundary)
+  builtup <- as.polygons(boundary_mask, dissolve = TRUE, na.rm = TRUE)
+  builtup_sf <- st_as_sf(builtup)
 
-  return(builtup)
+  return(builtup_sf)
 }
 
 
