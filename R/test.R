@@ -30,16 +30,12 @@ pol_berlin <- filter(germany, UC_NM_MN == 'Berlin') #1
 
 lst_berlin <- rast(file.path(project_dir, "Land_Surface_Temperature_Summer_Means_Cities/Berlin_LST_2013-2022_summer_mean.tif"))
 wsf_berlin <- rast(file.path(project_dir, "WSF2019_v1_12_52, Berlin.tif"))
-plot(lst_berlin)
-plot(wsf_berlin)
+
 
 summary(wsf_berlin)
 unique(values(wsf_berlin))
 freq(wsf_berlin)
 
-devtools::document()
-devtools::load_all()
-library(Rpollution)
 
 berlin_built <- builtuparea(wsf_berlin, pol_berlin)
 mt_berlin <- rastmeancalc(lst_berlin, pol_berlin) %>% print()
@@ -47,10 +43,10 @@ mt_berlin_built <- rastmeancalc(lst_berlin, berlin_built) %>% print()
 
 berlin_buildings <- get_osm_buildings(pol_berlin)
 berlin_nature <- get_osm_nature(pol_berlin)
-plot(pol_berlin)
 
 
-terra::plot(berlin_built)
+
+
 hasValues(wsf_berlin)
 unique(wsf_berlin)
 wsf_berlin
