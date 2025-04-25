@@ -31,9 +31,9 @@ visualise_correlation <- function(results, y_axis = NULL) {
   p1 <- ggplot(results, aes(x = wsf, y = raster)) +
     geom_point(size = 3, color = "red") +  # adding data points
     geom_smooth(method = "lm", color = "blue", linetype = "dashed", aes(group = 1)) +  # regression line
-    geom_text_repel(aes(label = "name"), vjust = -0.5, hjust = 0.5, size = 4) +  # city labels
+    geom_text_repel(aes(label = name), vjust = -0.5, hjust = 0.5, size = 4) +  # city labels
     labs(x = "imperviousness (WSF, %)", y = y_axis,
-         title = paste0("Correlation between", y_axis, " and imperviousness"),
+         title = paste0("Correlation between ", y_axis, " and imperviousness"),
          subtitle = paste0("Pearson Correlation: r =", round(correlation, 3))) +
     theme_minimal() +
     theme(
