@@ -24,7 +24,6 @@ builtuparea <- function(wsf_raster, boundary_polygon) {
   values(mask)[values(data_crop) != 255] <- NA
   mask <- classify(data_crop, rcl = matrix(c(-Inf, 254, NA), ncol = 3, byrow = TRUE))
 
-
   boundary_mask <- mask(mask, boundary)
   builtup <- as.polygons(boundary_mask, dissolve = TRUE, na.rm = TRUE)
   builtup_sf <- st_as_sf(builtup)

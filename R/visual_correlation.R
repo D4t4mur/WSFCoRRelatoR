@@ -1,28 +1,13 @@
-#' functions to combine raster results
-#' into new raster
+#' function to calculate the correlation between world settlement footprint and
+#' the examined variable and visualisation in a graph
 
-#' @param wsf_raster raster with world settlement footprint data
-#' @param boundary_polygon vector file with optional boundary units
-#' @return total built-up area as sf-object
+#' @param results dataframe with three columns, return result of combine-function
+#' @param y_axis name of the y-axis that should be displayed
+#' @return a gg2-plot graph with the results
 #' @export
 
+visual_correlation <- function(results, y_axis = NULL) {
 
-combine <- function(name, raster, wsf) {
-  if (!(length(name) == length(raster) && length(raster) == length(wsf))) {
-    stop("All input vectors have to be the same length.")
-  }
-
-  results <- data.frame(
-    name = name,
-    raster = raster,
-    wsf = wsf
-  )
-
-  write.csv(results, file = "combined_results.csv", row.names = FALSE)
-  return(results)
-}
-
-visualise_correlation <- function(results, y_axis = NULL) {
   library(ggplot2) # for visualising
   library(ggrepel) # for no overlapping labels
 
@@ -44,7 +29,7 @@ visualise_correlation <- function(results, y_axis = NULL) {
       panel.grid = element_line(color = "gray80")
     )
 
-  print(p1)
+  return(p1)
 }
 
 

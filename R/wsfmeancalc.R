@@ -1,15 +1,15 @@
 #' function to calculate mean value for a raster
 #' based on boundary polygon
 
-#' @param raster raster with random data
+#' @param wsf_raster raster with world settlement footprint
 #' @param boundary_polygon vector file with boundary units
-#' @return mean value for raster values
+#' @return mean value for world settlement footprint
 #' @export
 
-rastmeancalc <- function(raster, boundary_polygon) {
+wsfmeancalc <- function(wsf_raster, boundary_polygon) {
 
-  library(sf) # shapefiles and geopackages
-  library(terra) # rasters
+  library(sf) # for shapefiles and geopackages
+  library(terra) # for rasters
   library(exactextractr) # for accurate raster extraction with polygons
 
   data <- if (inherits(raster, "SpatRaster")) raster else rast(raster)
@@ -20,7 +20,7 @@ rastmeancalc <- function(raster, boundary_polygon) {
   boundary <- st_transform(boundary_polygon, crs(data))
   data_crop <- crop(data, vect(boundary))
 
-  mean <- exact_extract(data_crop, boundary, fun = 'mean') %>% round(3)
+  mean <- exact_extract(data_crop, boundary, fun = 'mean')/255 %>% round(3)
 
   return(mean)
 }
