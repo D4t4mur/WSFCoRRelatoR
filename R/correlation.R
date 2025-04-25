@@ -18,7 +18,7 @@ combine <- function(name, raster, wsf) {
     wsf = wsf
   )
 
-  write.csv(results, file = "combined_results", row.names = FALSE)
+  write.csv(results, file = "combined_results.csv", row.names = FALSE)
   return(results)
 }
 
