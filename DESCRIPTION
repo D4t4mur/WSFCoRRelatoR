@@ -2,7 +2,7 @@ Package: WSFCoRRelatoR
 Title: WSFCoRRelatoR
 Version: 0.1.0
 Authors@R: 
-    person("Niklas", "Treichel", "Niklas.Treichel@t-online.de", role = c("aut", "cre"))
+    person(given = "Niklas", family = "Treichel", email = "Niklas.Treichel@t-online.de", role = c("aut", "cre"))
 Description: This package provides some functions to quickly correlate a raster variable with world settlement footprint (i.e. built-up area / imperviousness).
 License: MIT + file LICENSE
 Imports: sf, terra, dplyr, ggplot2, ggrepel
