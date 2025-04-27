@@ -1,4 +1,4 @@
-# WSF-CoRRelatoR
+# WSFCoRRelatoR
 
 This package provides functions to quickly calculate and display the correlation between the mean value of any given raster dataset with a single variable and the world settlement footprint.
 
@@ -28,8 +28,8 @@ You can simply install the package via
 
 ```r
 library(devtools)
-install_github("D4t4mur/WSF-CoRRelatoR")
-library(WSF-CoRRelatoR)
+install_github("D4t4mur/WSFCoRRelatoR")
+library(WSFCoRRelatoR)
 ```
 
 
@@ -61,7 +61,7 @@ If you now want to calculate the mean temperature in summer and the wsf for each
 
 ```r
 district_lst <- rastmeancalc(berlin_lst, berlin_districts)
-district_wsf <- rastmeancalc(berlin_wsf, berlin_districts)
+district_wsf <- wsfcalc(berlin_wsf, berlin_districts)
 ```
 
 The following combination of the numbers can be done with `combine()`
@@ -73,27 +73,38 @@ results <- combine(berlin_districts$Gemeinde_n, district_lst, district_wsf)
 The display of the results is done by creating the correlation plot:
 
 ```r
-visual_correlation(results, "LST")
+plot <- visual_correlation(results, "LST")
 ```
 
-Optional is 
 
+##
 
-  wsf_polygons <- list()
-  for (i in 1:nrow(berlin_districts)) {
-    single_district <- berlin_districts[i, ]
-    builtup_polygon <- builtuparea(berlin_wsf, single_district)
-    wsf_polygons[[i]] <- builtup_polygon
-  }
-  wsf_polygons_sf <- do.call(rbind, wsf_polygons)
-  
-  district_wsf <- rastmeancalc(berlin_wsf, berlin_districts)
-  district_lst <- rastmeancalc(berlin_lst, berlin_districts)
-  district_lst_builtup <- rastmeancalc(berlin_lst, wsf_polygons_sf)
-  
-  print(district_wsf)
-  print(district_lst)
-  print(district_lst_builtup)
-  
-  results <- combine(berlin_districts$Gemeinde_n, district_lst, district_wsf)
-  visual_correlation(results, "LST")
+Optional only the built-up area can be examined. In order to achieve this for the example data,
+you would extract the new polygon area with the `builtuparea`-function., connecting the polygons later on.
+
+```r
+wsf_polygons <- list()
+for (i in 1:nrow(berlin_districts)) {
+  single_district <- berlin_districts[i, ]
+  builtup_polygon <- builtuparea(berlin_wsf, single_district)
+  wsf_polygons[[i]] <- builtup_polygon
+}
+wsf_polygons_sf <- do.call(rbind, wsf_polygons)
+```
+
+This step as well as loading the data in, you might have to slightly change the process, as different raster- or vector-files might be
+necessary if the areas of interest are further apart.
+
+With this newly built vector object you can now calculate the mean temperature only for the sealed area.
+
+```r
+district_lst_builtup <- rastmeancalc(berlin_lst, wsf_polygons_sf)
+```
+
+With this one could examine in further directions, for example if the relative difference (increase for lst) obtained correlates with the wsf values.
+
+```r
+relative_lst_change <- (district_lst_builtup - district_lst) / district_lst * 100
+relative_results <- combine(berlin_districts$Gemeinde_n, relative_lst_change, district_wsf)
+relative_plot <- visual_correlation(relative_results, "LST change in %")
+```
