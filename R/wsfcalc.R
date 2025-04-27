@@ -1,4 +1,4 @@
-#' function to calculate mean value for a raster
+#' function to calculate mean wsf value for a raster
 #' based on boundary polygon
 
 #' @param wsf_raster raster with world settlement footprint
@@ -6,7 +6,7 @@
 #' @return mean value for world settlement footprint
 #' @export
 
-wsfmeancalc <- function(wsf_raster, boundary_polygon) {
+wsfcalc <- function(wsf_raster, boundary_polygon) {
 
   library(sf) # for shapefiles and geopackages
   library(terra) # for rasters
@@ -20,7 +20,7 @@ wsfmeancalc <- function(wsf_raster, boundary_polygon) {
   boundary <- st_transform(boundary_polygon, crs(data))
   data_crop <- crop(data, vect(boundary))
 
-  mean <- exact_extract(data_crop, boundary, fun = 'mean')/255 %>% round(3)
+  wsf <- exact_extract(data_crop, boundary, fun = 'mean')/255 %>% round(3)
 
-  return(mean)
+  return(wsf)
 }
