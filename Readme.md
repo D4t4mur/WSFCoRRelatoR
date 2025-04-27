@@ -115,3 +115,10 @@ print(relative_plot)
 ```
 
 ![correlation between relative lst change and wsf](img/example_plot_relative_Berlin.png)
+
+
+### Data sources
+
+- `district polygons`: https://daten.odis-berlin.de/de/dataset/bezirksgrenzen/
+- `lst raster`: Landsat-8/-9 means from 2013-2022
+- `wsf raster`: from link above
