@@ -9,10 +9,9 @@ load_example_data <- function() {
   library(sf) # shapefiles and geopackages
   library(terra) # rasters
 
-  filepath_berlin_districts <-  "data/Berlin_Bezirke.shp"
-  filepath_lst <- "data/Berlin_LST_2013-2022_summer_mean.tif"
-  filepath_wsf <- "data/WSF2019_Berlin.tif"
-
+  filepath_berlin_districts <- system.file("data", "Berlin_Bezirke.shp", package = "WSFCoRRelatoR")
+  filepath_lst <- system.file("data", "Berlin_LST_2013-2022_summer_mean.tif", package = "WSFCoRRelatoR")
+  filepath_wsf <- system.file("data", "WSF2019_Berlin.tif", package = "WSFCoRRelatoR")
 
   berlin_districts <- st_read(filepath_berlin_districts)
   berlin_lst <- rast(filepath_lst)
