@@ -52,7 +52,10 @@ The following functions are built in so far in this package:
 To load the examplary data, execute
 
 ```r
-load_example_data()
+example_data <- load_example_data()
+berlin_districts <- example_data$berlin_districts
+berlin_lst <- example_data$berlin_lst
+berlin_wsf <- example_data$berlin_wsf
 ```
 
 .. leaving you with the three variables: `berlin_lst`, `berlin_wsf`, `berlin_districts`

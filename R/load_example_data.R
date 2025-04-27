@@ -18,6 +18,6 @@ load_example_data <- function() {
   berlin_lst <- rast(filepath_lst)
   berlin_wsf <- rast(filepath_wsf)
 
-  return(berlin_districts, berlin_lst, berlin_wsf)
+  return(list(berlin_districts, berlin_lst, berlin_wsf))
 
 }
