@@ -43,7 +43,7 @@ The following functions are built in so far in this package:
 | `rastmeancalc()`      | extracts all raster pixel values and calculates the mean                                                                                                        |
 | `wsfcalc()`           | extracts all wsf raster pixel values and calculates the built-up area / imperviousness in %                                                                     |
 | `builtuparea()`       | masks the examined polygon with the built-up area from the wsf raster                                                                                           |
-| `combine()`           | combines the extracted values from data raster, wsf raster in a data frame                                                                                      |
+| `combine_results()`   | combines the extracted values from data raster, wsf raster in a data frame                                                                                      |
 | `visual_correlation()`| calculates the correlation and displays a plot showcasing the result                                                                                            |
 
 
@@ -53,9 +53,9 @@ To load the examplary data, execute
 
 ```r
 example_data <- load_example_data()
-berlin_districts <- example_data$berlin_districts
-berlin_lst <- example_data$berlin_lst
-berlin_wsf <- example_data$berlin_wsf
+berlin_districts <- example_data[[1]]
+berlin_lst <- example_data[[2]]
+berlin_wsf <- example_data[[3]]
 ```
 
 .. leaving you with the three variables: `berlin_lst`, `berlin_wsf`, `berlin_districts`
@@ -70,13 +70,14 @@ district_wsf <- wsfcalc(berlin_wsf, berlin_districts)
 The following combination of the numbers can be done with `combine()`
 
 ```r
-results <- combine(berlin_districts$Gemeinde_n, district_lst, district_wsf)
+results <- combine_results(berlin_districts$Gemeinde_n, district_lst, district_wsf)
 ```
 
 The display of the results is done by creating the correlation plot:
 
 ```r
 plot <- visual_correlation(results, "LST")
+print(plot)
 ```
 
 
@@ -107,7 +108,8 @@ district_lst_builtup <- rastmeancalc(berlin_lst, wsf_polygons_sf)
 With this one could examine in further directions, for example if the relative difference (increase for lst) obtained correlates with the wsf values.
 
 ```r
-relative_lst_change <- (district_lst_builtup - district_lst) / district_lst * 100
-relative_results <- combine(berlin_districts$Gemeinde_n, relative_lst_change, district_wsf)
+relative_lst_change <- ((district_lst_builtup - district_lst) / district_lst * 100) %>% round(3)
+relative_results <- combine_results(berlin_districts$Gemeinde_n, relative_lst_change, district_wsf)
 relative_plot <- visual_correlation(relative_results, "LST change in %")
+print(relative_plot)
 ```

@@ -12,7 +12,7 @@ wsfcalc <- function(wsf_raster, boundary_polygon) {
   library(terra) # for rasters
   library(exactextractr) # for accurate raster extraction with polygons
 
-  data <- if (inherits(raster, "SpatRaster")) raster else rast(raster)
+  data <- if (inherits(wsf_raster, "SpatRaster")) wsf_raster else rast(wsf_raster)
 
   if (!hasValues(data)) stop("Raster contains no values.")
   if (!inherits(boundary_polygon, "sf")) stop("Boundary has to be a sf-object.")

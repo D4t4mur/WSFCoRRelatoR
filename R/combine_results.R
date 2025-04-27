@@ -10,7 +10,7 @@
 #' @export
 
 
-combine <- function(name, raster, wsf, export = FALSE) {
+combine_results <- function(name, raster, wsf, export = FALSE) {
   if (!(length(name) == length(raster) && length(raster) == length(wsf))) {
     stop("All input vectors have to be the same length.")
   }
