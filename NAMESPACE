@@ -2,5 +2,7 @@
 
 export(builtuparea)
 export(combine)
-export(get_osm_buildings)
+export(load_example_data)
 export(rastmeancalc)
+export(visual_correlation)
+export(wsfcalc)

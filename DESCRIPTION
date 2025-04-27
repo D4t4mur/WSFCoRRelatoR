@@ -1,14 +1,13 @@
-Package: Rpollution
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Package: WSFCoRRelatoR
+Title: WSFCoRRelatoR
+Version: 0.1.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Niklas", "Treichel", "Niklas.Treichel@t-online.de", role = c("aut", "cre"))
+Description: This package provides some functions to quickly correlate a raster variable with world settlement footprint (i.e. built-up area / imperviousness).
+License: MIT + file LICENSE
+Imports: sf, terra, dplyr, ggplot2, ggrepel
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-URL: https://github.com/D4t4mur/Rpollution
-BugReports: https://github.com/D4t4mur/Rpollution/issues
+URL: https://github.com/D4t4mur/WSFCoRRelator
+BugReports: https://github.com/D4t4mur/WSFCoRRelator/issues
