@@ -67,7 +67,7 @@ district_lst <- rastmeancalc(berlin_lst, berlin_districts)
 district_wsf <- wsfcalc(berlin_wsf, berlin_districts)
 ```
 
-The following combination of the numbers can be done with `combine()`
+The following combination of the numbers can be done with `combine_results()`
 
 ```r
 results <- combine_results(berlin_districts$Gemeinde_n, district_lst, district_wsf)
