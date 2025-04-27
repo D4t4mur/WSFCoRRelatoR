@@ -80,7 +80,7 @@ plot <- visual_correlation(results, "LST")
 print(plot)
 ```
 
-![correlation between lst and wsf]("img/example_plot_Berlin.png")
+![correlation between lst and wsf](img/example_plot_Berlin.png)
 
 
 Optional only the built-up area can be examined. In order to achieve this for the example data,
@@ -114,4 +114,4 @@ relative_plot <- visual_correlation(relative_results, "LST change in %")
 print(relative_plot)
 ```
 
-![correlation between relative lst change and wsf]("img/example_plot_relative_Berlin.png")
+![correlation between relative lst change and wsf](img/example_plot_relative_Berlin.png)
