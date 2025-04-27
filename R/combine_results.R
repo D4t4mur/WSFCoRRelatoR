@@ -1,4 +1,6 @@
-#' functions to combine results extracted from the rasters
+#' combine_results()
+#'
+#' function to combine results extracted from the rasters
 #' into data frame and and export as csv if needed
 
 #' @param name vector with objective names

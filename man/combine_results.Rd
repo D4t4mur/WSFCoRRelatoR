@@ -2,8 +2,7 @@
 % Please edit documentation in R/combine_results.R
 \name{combine_results}
 \alias{combine_results}
-\title{functions to combine results extracted from the rasters
-into data frame and and export as csv if needed}
+\title{combine_results()}
 \usage{
 combine_results(name, raster, wsf, export = FALSE)
 }
@@ -21,6 +20,6 @@ data frame with name columnn and extracted values of examined raster
 and wsf
 }
 \description{
-functions to combine results extracted from the rasters
+function to combine results extracted from the rasters
 into data frame and and export as csv if needed
 }

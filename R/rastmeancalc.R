@@ -1,3 +1,5 @@
+#' rastmeancalc()
+#'
 #' function to calculate mean value for a raster
 #' based on boundary polygon
 

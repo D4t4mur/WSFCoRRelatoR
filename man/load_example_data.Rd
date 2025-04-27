@@ -2,7 +2,7 @@
 % Please edit documentation in R/load_example_data.R
 \name{load_example_data}
 \alias{load_example_data}
-\title{function to load examplary land surface temperature data for Berlin}
+\title{load_example_data()}
 \usage{
 load_example_data()
 }

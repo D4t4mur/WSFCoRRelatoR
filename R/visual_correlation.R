@@ -1,3 +1,5 @@
+#' visual_correlation()
+#'
 #' function to calculate the correlation between world settlement footprint and
 #' the examined variable and visualisation in a graph
 

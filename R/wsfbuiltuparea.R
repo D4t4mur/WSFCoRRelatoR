@@ -1,3 +1,5 @@
+#' builtuparea()
+#'
 #' function to extract all the built up area pixels from world settlement footprint raster
 #' into new raster
 

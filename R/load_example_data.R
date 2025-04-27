@@ -1,3 +1,5 @@
+#' load_example_data()
+#'
 #' function to load examplary land surface temperature data for Berlin
 
 #' @return three variables with district polygons, wsf raster

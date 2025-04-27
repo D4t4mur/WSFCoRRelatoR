@@ -2,8 +2,7 @@
 % Please edit documentation in R/wsfbuiltuparea.R
 \name{builtuparea}
 \alias{builtuparea}
-\title{function to extract all the built up area pixels from world settlement footprint raster
-into new raster}
+\title{builtuparea()}
 \usage{
 builtuparea(wsf_raster, boundary_polygon)
 }

@@ -2,8 +2,7 @@
 % Please edit documentation in R/rastmeancalc.R
 \name{rastmeancalc}
 \alias{rastmeancalc}
-\title{function to calculate mean value for a raster
-based on boundary polygon}
+\title{rastmeancalc()}
 \usage{
 rastmeancalc(raster, boundary_polygon)
 }

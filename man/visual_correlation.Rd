@@ -2,8 +2,7 @@
 % Please edit documentation in R/visual_correlation.R
 \name{visual_correlation}
 \alias{visual_correlation}
-\title{function to calculate the correlation between world settlement footprint and
-the examined variable and visualisation in a graph}
+\title{visual_correlation()}
 \usage{
 visual_correlation(results, y_axis = NULL)
 }

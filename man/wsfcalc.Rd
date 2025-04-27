@@ -2,8 +2,7 @@
 % Please edit documentation in R/wsfcalc.R
 \name{wsfcalc}
 \alias{wsfcalc}
-\title{function to calculate mean wsf value for a raster
-based on boundary polygon}
+\title{wsfcalc()}
 \usage{
 wsfcalc(wsf_raster, boundary_polygon)
 }

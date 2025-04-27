@@ -1,3 +1,5 @@
+#' wsfcalc()
+#'
 #' function to calculate mean wsf value for a raster
 #' based on boundary polygon
 
