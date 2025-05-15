@@ -22,7 +22,7 @@ wsfcalc <- function(wsf_raster, boundary_polygon) {
   boundary <- st_transform(boundary_polygon, crs(data))
   data_crop <- crop(data, vect(boundary))
 
-  wsf <- exact_extract(data_crop, boundary, fun = 'mean')/2.55 %>% round(3)
+  wsf <- exact_extract(data_crop, boundary, fun = 'mean') %>% round(3)
 
   return(wsf)
 }
